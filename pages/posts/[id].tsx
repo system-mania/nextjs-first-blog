@@ -30,6 +30,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  if (!params) {
+    // params가 undefined인 경우의 처리
+    return { props: {} };
+  }
+
   const postData = await getPostData(params.id as string);
   return {
     props: {
